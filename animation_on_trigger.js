@@ -3,7 +3,7 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 500;
 const CANVAS_HEIGHT = canvas.height = 700;
-const explosions = [];
+const objects = [];
 let canvasPosition = canvas.getBoundingClientRect();
 
 class Explosion {
@@ -49,16 +49,16 @@ window.addEventListener('click', function (e) {
 function createAnimation(e){
     let positionX = e.x - canvasPosition.left;
     let positionY = e.y - canvasPosition.top;
-    explosions.push(new Explosion(positionX, positionY));
+    objects.push(new Explosion(positionX, positionY));
 }
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < explosions.length; i++) {
-        explosions[i].update();
-        explosions[i].draw();
-        if (explosions[i].frame > 5) {
-            explosions.splice(i, 1);
+    for (let i = 0; i < objects.length; i++) {
+        objects[i].update();
+        objects[i].draw();
+        if (objects[i].frame > 5) {
+            objects.splice(i, 1);
             i--;
         }
     }
